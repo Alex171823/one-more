@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail About Author</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Книги</th>
+            <th>Всего книг</th>
+            <th>Список магазинов, где продается</th>
+            <th>Список издателей, где печатается</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+            <td>{{ age }}</td>
+
+            <td>{% if books %}
+                    <ul>
+                        {% for book in books %}
+                            <li>
+                                {{ book.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>No books</p>
+                {% endif %}</td>
+
+            <td>{{ num }}</td>
+
+            <td>{% if stores %}
+                    <ul>
+                        {% for store in stores %}
+                            <li>
+                                {{ store.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>No stores</p>
+            {% endif %}</td>
+
+            <td>{% if publishers %}
+                    <ul>
+                        {% for publisher in publishers %}
+                            <li>
+                                {{ publisher.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>No publishers</p></td>
+        </tr>
+ </table>
+
+{#<p>Name: {{ name }}</p>#}
+{#<p>Age: {{ age }}</p>#}
+{#<p>Books: </p>#}
+{#{% if books %}#}
+{#    <ul>#}
+{#        {% for book in books %}#}
+{#        <li>#}
+{#            {{ book.name }}#}
+{#        </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    {% else %}#}
+{#        <p>No books</p>#}
+{% endif %}
+</body>
+</html>

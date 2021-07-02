@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publishers List</title>
+</head>
+<body>
+{% if publishers %}
+    <ul>
+        {% for publisher in publishers %}
+        <li>
+            <a href= {% url "publisher_detail_url" publisher.id %} > {{ publisher.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No publishers</p>
+{% endif %}
+</body>
+</html>

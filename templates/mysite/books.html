@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors List</title>
+</head>
+<body>
+{% if books %}
+        <table border="5">
+            <tr>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Количество авторов</th>
+            </tr>
+            {% for book in books %}
+                <tr>
+                    <th>{{ book.id }}</th>
+                    <th><a href= {% url "book_detail_url" book.id %} > {{ book.name }}</a></th>
+                    <th>{{ book.authors_count }}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No books</p>
+{% endif %}
+</body>
+</html>

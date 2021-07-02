@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail About Author</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Цена</th>
+            <th>Автор</th>
+            <th>Издатель</th>
+            <th>Магазины, в которых продается</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+
+            <td>{{ price }}</td>
+
+            <td>{% if authors %}
+                <ul>
+                    {% for author in authors %}
+                        <li>
+                            {{ author.name }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No authors</p>
+            {% endif %}</td>
+
+            <td>{{ publisher.name }}</td>
+
+            <td>{% if stores %}
+                <ul>
+                    {% for store in stores %}
+                        {% if store.books %}
+                        <li>
+                            {{ store.name }}
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}<p>No books</p>
+            {% endif %}</td>
+        </tr>
+    </table>
+</body>
+</html>

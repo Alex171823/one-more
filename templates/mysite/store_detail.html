@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail About Author</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Книги</th>
+            <th>Всего книг</th>
+            <th>Мин цена книги</th>
+            <th>Максимальная цена книги</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+
+            <td>{% if books %}
+                    <ul>
+                        {% for book in books %}
+                            <li>
+                                {{ book.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>No books</p>
+                {% endif %}</td>
+
+            <td>{{ num }}</td>
+            <td>{{ min }}</td>
+            <td>{{ max }}</td>
+        </tr>
+    </table>
+</body>
+</html>

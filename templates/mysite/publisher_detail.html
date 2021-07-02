@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="5">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Книги</th>
+            <th>Всего книг</th>
+            <th>Магазины, в которых продается</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+
+            <td>{% if books %}
+                    <ul>
+                        {% for book in books %}
+                            <li>
+                                {{ book.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>No books</p>
+                {% endif %}</td>
+
+            <td>{{ num }}</td>
+
+            <td>{% if stores %}
+                <ul>
+                    {% for store in stores %}
+                        {% if store.books %}
+                        <li>
+                            {{ store.name }}
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}<p>No books</p>
+            {% endif %}</td>
+        </tr>
+ </table>
+</body>
+</html>
