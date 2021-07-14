@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -27,6 +28,9 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.pages} {self.price} {self.rating} {self.publisher} {self.pubdate}"
+
+    def get_absolute_url(self):
+        return reverse('update-book', kwargs={'pk': self.pk})
 
 
 class Store(models.Model):

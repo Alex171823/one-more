@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<p>Name: {{ object.name }}</p>
+<p>Pages: {{ object.pages }}</p>
+<p>Price: {{ object.price }}</p>
+<p>Rating: {{ object.rating }}</p>
+<p>Publisher: {{ object.publisher }}</p>
+<p>Pubdate: {{ object.pubdate|date }}</p>
+<p>Author:
+    {% if author_book %}
+        {% for author in author_book %}
+                {{ author.name }}
+        {% endfor %}
+    {% endif %}
+</p>
+</body>
+</html>
