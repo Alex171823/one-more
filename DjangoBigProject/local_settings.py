@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'mysite.apps.MysiteConfig',
     'hw15.apps.Hw15Config',
+    'practice.apps.PracticeConfig',
 
     'django_extensions',
     'debug_toolbar',
