@@ -1,0 +1,7 @@
+{% extends "hw15/base_generic.html" %}
+
+{% block content %}
+    {% for person in page_obj %}
+        <a href= {% url "detail-person" person.id %} > {{ person.name }}</a><br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "hw15/base_generic.html" %}
+
+{% block content %}
+    <ul>
+        <li>ID: {{ object.id }}</li>
+        <li>Name: {{ object.name }}</li>
+        <li>Release date: {{ object.release_date }}</li>
+        <li>People watched: {{ num }}</li>
+        <ul>
+            {% for person in people_watched %}
+                <li>{{ person.name }}</li>
+            {% endfor %}
+        </ul>
+    </ul>
+{% endblock %}

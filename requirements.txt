@@ -10,3 +10,5 @@ faker==8.5.0
 pydot==1.4.2
 django-debug-toolbar==3.2.1
 django-silk==4.1.0
+django-redis==5.0.0
+redis==3.5.3
