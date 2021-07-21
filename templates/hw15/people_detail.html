@@ -2,13 +2,15 @@
 
 {% block content %}
     <ul>
-        <li>ID: {{ object.id }}</li>
+        {% comment %} using filter here {% endcomment %}
+        <li>ID: {{ object.id|floatformat:1 }}</li>
         <li>Name: {{ object.name }}</li>
         <li>Date of birth: {{ object.date_birth }}</li>
         <li>Films watched: {{ num }}</li>
         <ul>
             {% for film in films_watched %}
-                <li>{{ film.name }}</li>
+                 {% comment %} and here {% endcomment %}
+                <li>{{ film.name|upper }}</li>
             {% endfor %}
         </ul>
     </ul>

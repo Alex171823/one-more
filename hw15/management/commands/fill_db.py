@@ -18,16 +18,16 @@ class Command(BaseCommand):
         # Films.objects.all().delete()
         # People.objects.all().delete()
 
-        # create 1000 films
+        # create 10000 films
         self.stdout.write('creating films')
-        films = [Films(name=fake.word().title(), release_date=fake.date()) for i in range(1, 1001)]
+        films = [Films(name=fake.word().title(), release_date=fake.date()) for i in range(1, 10001)]
         Films.objects.bulk_create(films)
         self.stdout.write('films created')
 
-        # create 5000 people
+        # create 50000 people
         self.stdout.write("creating people")
         people = []
-        for i in range(5000):
+        for i in range(50000):
             people.append(People(name=fake.name(),
                                  date_birth=fake.date(),
                                  age=randint(0, 100)))
@@ -40,6 +40,6 @@ class Command(BaseCommand):
             films_people = []
             for i in range(1, randint(1, 11)):
                 films_people.append(PeopleFilmsManyToMany(person=person,
-                                                          film=Films.objects.get(id=randint(1, 1000))))
+                                                          film=Films.objects.get(id=randint(1, 10000))))
             PeopleFilmsManyToMany.objects.bulk_create(films_people)
         self.stdout.write('dependencies set')

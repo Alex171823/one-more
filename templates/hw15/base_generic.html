@@ -1,3 +1,4 @@
+{% load hw15_extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,11 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+You are reading that on {% now "jS F Y, H:i" %} <br>
+This is for testing custom profanity filter: {{ "Where is the money, Lebowski? Where the fuck is the money, asshole?"|clear_phrase }} <br>
+And here I am testing custom tag: {% random_book_publisher %} <br>
 {% block content %}
 {% endblock %}
-
 {% block pagination %}
     {% if object == true %}
         <div class="pagination">

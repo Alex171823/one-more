@@ -1,3 +1,5 @@
+from random import randint
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Max, Min, Prefetch
 from django.http import HttpResponse

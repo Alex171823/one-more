@@ -8,7 +8,8 @@
         </tr>
         {% for user in page_obj %}
         <tr>
-            <td><a href= {% url "detail-film" user.id %} > {{ user.name }}</a></td>
+            {% comment %} using forloop here {% endcomment %}
+            <td>{{ forloop.counter }}. <a href= {% url "detail-film" user.id %} > {{ user.name }}</a></td>
             <td>{{ user.num }}</td>
         </tr>
         {% endfor %}
