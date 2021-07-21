@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User as User
+from django.db import models
 
 
 class Posts(models.Model):
@@ -12,10 +12,13 @@ class Posts(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.post_text} {self.short_description} {self.full_description} {self.picture} {self.is_draft} {self.user}"
+        return f"{self.post_text} {self.short_description} {self.full_description} {self.picture} {self.is_draft} {self.user}"  # noqa W292
 
 
 class Comments(models.Model):
-	text = models.CharField(max_length=255)
-	username = models.CharField(max_length=255)
-	post = models.ForeignKey(Posts, on_delete=models.CASCADE, default=1)
+    text = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return f"{self.text} {self.username} {self.post}"

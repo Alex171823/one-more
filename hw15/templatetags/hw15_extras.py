@@ -1,9 +1,10 @@
 from random import randint
 
-from django import template
-from mysite.models import Book
-
 from better_profanity import profanity
+
+from django import template
+
+from mysite.models import Book
 
 register = template.Library()
 
