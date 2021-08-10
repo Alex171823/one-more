@@ -1,0 +1,9 @@
+{% extends "practice/base.html" %}
+
+{% block title %}List of posts{% endblock %}
+
+{% block content %}
+    {% for post in object_list %}
+        {{ post.id }}<br>
+    {% endfor %}
+{% endblock %}

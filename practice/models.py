@@ -8,7 +8,6 @@ class Posts(models.Model):
     full_description = models.TextField()
     picture = models.CharField(max_length=255)
     is_draft = models.BooleanField()
-    is_published = models.BooleanField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -19,6 +18,8 @@ class Comments(models.Model):
     text = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, default=1)
+
+    is_published = models.BooleanField(default=0)
 
     def __str__(self):
         return f"{self.text} {self.username} {self.post}"
