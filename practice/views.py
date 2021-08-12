@@ -1,21 +1,26 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User as User
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
+
+from .forms import UserRegistrationForm, LoginForm, PasswordForm
 from .models import Posts, Comments
-from django.urls import reverse_lazy
-from .forms import UserRegistrationForm
-from practice.tasks import send_mail
-from django.contrib.auth.models import User as User
 
 
 def startpage(request):
     return HttpResponse("You are on startpage")
 
+
 """
 Posts
 """
+
+
 # добавть авторизацию через миксин, автозапись пользователя
 class PostsCreateView(CreateView):
     model = Posts
@@ -47,6 +52,8 @@ class PostsDetailView(DetailView):
 """
 Comments
 """
+
+
 class CommentsCreateView(CreateView):
     model = Comments
     fields = ['text', 'username', 'post']
@@ -59,17 +66,22 @@ class CommentsCreateView(CreateView):
     text = ['new comment added']
     # send_mail.apply_async(text, email)
 
+
 """
 profiles
 """
-class UserProfileView(DetailView):
+
+
+class UserProfileView(UpdateView):
     model = User
     template_name = 'practice'
 
 """
 authorization, authentification and so on
 """
-def register(request):
+
+
+def user_register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -83,3 +95,40 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'practice/register.html', {'user_form': user_form})
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('startpage')
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return HttpResponse('Invalid login')
+    else:
+        form = LoginForm()
+    return render(request, 'practice/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return render(request, 'practice/logout.html')
+
+
+def user_change_password(request, pk):
+    u = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        form = PasswordForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['password2']
+            u.set_password(make_password(password))
+            u.save()
+    else:
+        form = PasswordForm()
+    return render(request, 'practice/reset_password.html', {'form': form, 'pk': pk})

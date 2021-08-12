@@ -1,7 +1,6 @@
 from random import randint
 
 from django.core.management.base import BaseCommand
-
 from faker import Faker
 
 from hw15.models import Films, People, PeopleFilmsManyToMany

@@ -13,3 +13,5 @@ django-silk==4.1.0
 django-redis==5.0.0
 redis==3.5.3
 better-profanity==0.7.0
+django-celery-results==2.2.0
+django-crispy-forms==1.12.0

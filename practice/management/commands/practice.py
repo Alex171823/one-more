@@ -1,8 +1,8 @@
 from random import randint
 
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User as User
 from django.core.management.base import BaseCommand
-
 from faker import Faker
 
 from practice.models import Comments, Posts
@@ -22,7 +22,7 @@ class Command(BaseCommand):
         # create 100 users
         self.stdout.write('creating users')
         for i in range(1, 10):
-            User.objects.create(username=fake.name(), password=fake.password(), is_staff=0)
+            User.objects.create(username=fake.name(), password=make_password(fake.password()), is_staff=0)
             self.stdout.write(f'user created {i}')
 
         # create up to 10 posts for each user
@@ -35,7 +35,6 @@ class Command(BaseCommand):
                                    full_description=fake.text(),
                                    picture="./" + fake.word(),
                                    is_draft=randint(0, 1),
-                                   is_published=randint(0, 1),
                                    user=user))
         Posts.objects.bulk_create(posts)
         self.stdout.write('posts created')

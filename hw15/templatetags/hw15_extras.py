@@ -1,7 +1,6 @@
 from random import randint
 
 from better_profanity import profanity
-
 from django import template
 
 from mysite.models import Book

@@ -45,11 +45,15 @@ INSTALLED_APPS = [
     'hw15.apps.Hw15Config',
     'practice.apps.PracticeConfig',
 
+    'crispy_forms',
+
     'django_celery_results',
     'django_extensions',
     'debug_toolbar',
     'silk',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
