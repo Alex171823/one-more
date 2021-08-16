@@ -3,7 +3,9 @@
 {% block title %}List of posts{% endblock %}
 
 {% block content %}
+    <ul class="list-group">
     {% for post in object_list %}
-        {{ post.id }}<br>
+        <li class="list-group-item">{{ post.id }}<br></li>
     {% endfor %}
+    </ul>
 {% endblock %}

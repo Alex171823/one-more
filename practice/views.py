@@ -3,17 +3,18 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User as User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserRegistrationForm, LoginForm, PasswordForm
 from .models import Posts, Comments
 
 
 def startpage(request):
-    return HttpResponse("You are on startpage")
+    return render(request, 'practice/startpage.html')
 
 
 """
@@ -61,7 +62,7 @@ class CommentsCreateView(CreateView):
 
     success_url = reverse_lazy('posts_list')
 
-    # havent tested, need cellery beimg started
+    # havent tested, need cellery being started
     email = ['sometestemail@test.com']
     text = ['new comment added']
     # send_mail.apply_async(text, email)
@@ -72,9 +73,13 @@ profiles
 """
 
 
-class UserProfileView(UpdateView):
+class UserProfileView(LoginRequiredMixin, UpdateView):
     model = User
-    template_name = 'practice'
+    template_name = 'practice/userprofile.html'
+    fields = ['username', 'first_name', 'email', 'is_active']
+    username = None
+
+
 
 """
 authorization, authentification and so on
@@ -117,7 +122,6 @@ def user_login(request):
 
 
 def user_logout(request):
-    logout(request)
     return render(request, 'practice/logout.html')
 
 

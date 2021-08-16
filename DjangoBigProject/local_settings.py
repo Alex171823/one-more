@@ -45,15 +45,11 @@ INSTALLED_APPS = [
     'hw15.apps.Hw15Config',
     'practice.apps.PracticeConfig',
 
-    'crispy_forms',
-
     'django_celery_results',
     'django_extensions',
     'debug_toolbar',
     'silk',
 ]
-
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,6 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'bootstrap'), ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
