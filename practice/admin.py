@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from .models import Comments, Posts
-from django.contrib.auth.models import User as User
 
 
 @admin.register(Posts)

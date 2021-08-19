@@ -3,6 +3,7 @@ from random import randint
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User as User
 from django.core.management.base import BaseCommand
+
 from faker import Faker
 
 from practice.models import Comments, Posts

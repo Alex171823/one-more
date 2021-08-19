@@ -1,16 +1,16 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User as User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import UserRegistrationForm, LoginForm, PasswordForm
-from .models import Posts, Comments
+from .forms import LoginForm, PasswordForm, UserRegistrationForm
+from .models import Comments, Posts
 
 
 def startpage(request):
@@ -80,7 +80,6 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     username = None
 
 
-
 """
 authorization, authentification and so on
 """
@@ -136,3 +135,31 @@ def user_change_password(request, pk):
     else:
         form = PasswordForm()
     return render(request, 'practice/reset_password.html', {'form': form, 'pk': pk})
+
+# """ TUTORIAL """
+#
+# from django.contrib.auth.models import User, Group
+# from rest_framework import viewsets
+# from rest_framework import permissions
+# from .serializers import UserSerializer, GroupSerializer
+#
+#
+# class UserViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows users to be viewed or edited.
+#     """
+#     queryset = User.objects.all().order_by('-date_joined')
+#     serializer_class = UserSerializer
+#     permission_classes = [permissions.IsAuthenticated]
+#
+#
+# class GroupViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows groups to be viewed or edited.
+#     """
+#     queryset = Group.objects.all()
+#     serializer_class = GroupSerializer
+#     permission_classes = [permissions.IsAuthenticated]
+#
+#
+# """ TUTORIAL ENDS """

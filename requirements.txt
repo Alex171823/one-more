@@ -14,3 +14,6 @@ django-redis==5.0.0
 redis==3.5.3
 better-profanity==0.7.0
 django-celery-results==2.2.0
+djangorestframework==3.12.4
+markdown==3.3.4
+django-filter==2.4.0

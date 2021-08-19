@@ -1,6 +1,7 @@
 from random import randint, uniform
 
 from django.core.management.base import BaseCommand
+
 from faker import Faker
 
 from mysite.models import Author, Book, Publisher, Store
